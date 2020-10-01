@@ -1,0 +1,19 @@
+version: "3"
+volumes:
+  datavolume: {}
+services:
+  server:
+    build: .
+    container_name: wan-bridge-server
+    command: yarn start
+    ports:
+      - 9000:9000
+    environment:
+      - BTC_NETWORK=testnet
+    restart: always
+    logging: &logging_default
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "200m"
+        compress: "true"
